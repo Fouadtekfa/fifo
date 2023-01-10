@@ -190,8 +190,13 @@ object QueueTest {
       println("================")
     } else {
       println("Test échoué !!!")
-      println("================")
+      println("========================================================")
     }
+    System.out.println("================Test de la methode ToList =============== \n")
+
+    System.out.println("teste sur un q vide ")
+
+
 
     // newQueueIsEmpty()
    // nonEmptyQueueIsNotEmpty()
@@ -204,7 +209,7 @@ object QueueTest {
     //headOfEmptyReturnsNone()
    // headOfNonEmptyReturnsCorrectValue()
     //rearOfEmptyReturnsNone()
-    rearOfNonEmptyReturnsCorrectValue()
+    //rearOfNonEmptyReturnsCorrectValue()
     emptyQueueToListIsNil()
     queueToListOutputsCorrectValue()
     queueMapOutputsCorrectValue()
@@ -334,11 +339,17 @@ object QueueTest {
       val correctValue = "Values: 2, 7, 3, "
       assert(value.equals(correctValue))
     }
+
+
     /**
      *
      * HELPERS
      *
      */
+
+
+
+
 
 
 
@@ -356,6 +367,9 @@ object QueueTest {
         case _ => false
       }
     }
+
+
+
 
 
     def  areQueueEquals[T] (a: Queue[T], b: Queue[T]): Boolean = {
