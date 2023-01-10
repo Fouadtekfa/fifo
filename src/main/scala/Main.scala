@@ -166,9 +166,22 @@ object QueueTest {
 
     System.out.println("================Test de la methode rearOption =============== \n")
 
+    System.out.println("====rearOption d'une Queue Nil Return None =========== \n")
+    val rearofEmptyReturnsNone = Queue[Int](Nil, Nil)
+    if (rearofEmptyReturnsNone.rearOption().isEmpty) {
+
+      println("LaQueue.rearOption().isEmpty =>"+rearofEmptyReturnsNone.rearOption().isEmpty)
+      println("rearOption d'une Queue Nil "+rearofEmptyReturnsNone+" Return: ==> " +rearofEmptyReturnsNone.rearOption())
+      println("Test réussi")
+      println("================")
+    } else {
+      println("Test échoué !!!")
+      println("================")
+    }
 
 
-   // newQueueIsEmpty()
+
+    // newQueueIsEmpty()
    // nonEmptyQueueIsNotEmpty()
     //newQueueHasLengthZero()
     //singletonHasLengthOne()
