@@ -164,6 +164,10 @@ object QueueTest {
     }
 
 
+    System.out.println("================Test de la methode rearOption =============== \n")
+
+
+
    // newQueueIsEmpty()
    // nonEmptyQueueIsNotEmpty()
     //newQueueHasLengthZero()
