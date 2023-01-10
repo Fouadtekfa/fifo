@@ -178,8 +178,20 @@ object QueueTest {
       println("Test échoué !!!")
       println("================")
     }
+    System.out.println("====Vérifier que rearOption  d'une Queue non vide return la bonne valeur  : ====")
+    val valuerear = new Random().nextInt(50)
+    val rear = Queue[Int](Nil, Nil).enqueue(valuerear).enqueue(1).rearOption()
 
-
+    if (rear.isDefined & rear.get == valuerear) {
+      println("premier élément entré "+valuerear)
+      System.out.println( "LaQueue.rearOption()==> "+rear)
+      println("la valeure retourner ==>" +rear.get)
+      println("Test réussi")
+      println("================")
+    } else {
+      println("Test échoué !!!")
+      println("================")
+    }
 
     // newQueueIsEmpty()
    // nonEmptyQueueIsNotEmpty()
@@ -191,7 +203,7 @@ object QueueTest {
     //dequeueReturnsCorrectValue2()
     //headOfEmptyReturnsNone()
    // headOfNonEmptyReturnsCorrectValue()
-    rearOfEmptyReturnsNone()
+    //rearOfEmptyReturnsNone()
     rearOfNonEmptyReturnsCorrectValue()
     emptyQueueToListIsNil()
     queueToListOutputsCorrectValue()
