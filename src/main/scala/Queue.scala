@@ -71,8 +71,8 @@ case class Queue[T](in: List[T], out: List[T]){
    *
    * @return
    */
-  def toList: List[T] = in ::: out.reverse
-  // def toList: List[T] = out ::: in.reverse
+  //def toList: List[T] = out ::: out.reverse
+   def toList: List[T] = out ::: in.reverse
 
   /**
    * Méthode map sur la queue.

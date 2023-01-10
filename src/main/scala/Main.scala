@@ -40,6 +40,7 @@ object QueueTest {
     println("verifier que une nouvelle Queue es bien vide ")
     val newQueueisEmpty = Queue[Int](Nil, Nil)
     if(newQueueisEmpty.isEmpty){
+      println(newQueueisEmpty)
       println( "La nouvelle Queue est bien vide !!! ===>  "+ newQueueisEmpty.isEmpty )
       println("Test réussi")
       println("================")
@@ -65,8 +66,8 @@ object QueueTest {
       println("================")
 
     }
-    println("================")
-    println("===========test de la methode length========")
+
+    println("\n===========test de la methode length========")
     println("Vérifier qu'une nouvelle Queue est de taille zéro   ")
     val  newQueueDeTailleZero=Queue[Int](Nil, Nil)
     if(newQueueDeTailleZero.length == 0){
@@ -194,9 +195,38 @@ object QueueTest {
     }
     System.out.println("================Test de la methode ToList =============== \n")
 
-    System.out.println("teste sur un q vide ")
+    System.out.println("======ToList sur un Queue vide=========")
+    val queueniltolist = Queue[Int](Nil, Nil)
+    val tolistNil = queueniltolist.toList
+    if (tolistNil == List()) {
+      println(queueniltolist)
+      println("Résultats obtenus ===> "+tolistNil )
+     // println(tolistNil)
+      println("Test réussi")
+      println("===============================\n")
+    } else {
+      println("Test échoué !!!")
+      println("================")
+    }
+    System.out.println("======ToList sur un Queue non vide =========")
+
+    val queuetolist = Queue[Int](Nil, Nil).enqueue(1).enqueue(2).enqueue(3).enqueue(4)
+    val queuetolist1= queuetolist.toList
+    if ( queuetolist1 == List(1,2,3,4)) {
+      println(queuetolist)
+      println("Résultats obtenus ===> "+queuetolist1 )
+      println("Test réussi")
+      println("======================================\n")
+    } else {
+      println("Test échoué !!!")
+      println("======================================\n")
+    }
+
+    System.out.println("================Test de la methode rearOption =============== \n")
 
 
+     //println(queuetolist)
+     //println(queuetolist1)
 
     // newQueueIsEmpty()
    // nonEmptyQueueIsNotEmpty()
@@ -210,8 +240,8 @@ object QueueTest {
    // headOfNonEmptyReturnsCorrectValue()
     //rearOfEmptyReturnsNone()
     //rearOfNonEmptyReturnsCorrectValue()
-    emptyQueueToListIsNil()
-    queueToListOutputsCorrectValue()
+   // emptyQueueToListIsNil()
+   // queueToListOutputsCorrectValue()
     queueMapOutputsCorrectValue()
     foldedEmptyQueueEqualsBaseAccumulator()
     foldedQueueEqualsCorrectValue()
@@ -348,11 +378,13 @@ object QueueTest {
      */
 
 
-
-
-
-
-
+    /**
+     * vérifier que deux listes sont égaux
+     * @param a List A
+     * @param b List B
+     * @tparam T contenue de la liste
+     * @return  vrai ou faux
+     */
 
     def  areEquals[T](a: List[T], b: List[T]): Boolean = {
       (a, b) match{
@@ -369,9 +401,13 @@ object QueueTest {
     }
 
 
-
-
-
+    /**
+     *  vérifier que deux Queue sont égaux
+     * @param a Queue
+     * @param b Queue
+     * @tparam T contenue
+     * @return vrai ou faux
+     */
     def  areQueueEquals[T] (a: Queue[T], b: Queue[T]): Boolean = {
       areEquals(a.in, b.in) && areEquals(a.out, b.out)
     }
