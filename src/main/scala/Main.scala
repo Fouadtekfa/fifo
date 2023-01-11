@@ -287,12 +287,66 @@ object QueueTest {
       println("Test échoué !!!")
       println("=======================")
     }
-    System.out.println("================Test de la methode foldLeft sur Queue vide  retu=============== \n")
+      println("========================Test de la methode foldLeft======================= \n")
+      println("================Test de la methode foldLeft sur Queue vide  =============== \n")
+      val element_neutre=1
+      val foldLeftQ1=Queue[Int](Nil, Nil)
+      val foldLeftR1=foldLeftQ1.foldLeft(1)(_ * _)
+    if (element_neutre == foldLeftR1) {
+      println(foldLeftQ1)
+      println("l'élément neutre = "+element_neutre)
+      println("LA_Queue.foldLeft(1)(_ * _)= " +foldLeftR1)
+      println("Test réussi")
+      println("================")
+    } else {
+      println("Test échoué !!!")
+      println("================")
+    }
+    println("================Test de la methode foldLeft sur Queue in Non Vide Out Vide  =============== ")
+    val foldLeftQ2 = Queue[Int](Nil, Nil).enqueue(1).enqueue(2).enqueue(3).enqueue(4)
+    val foldLeftR2 = foldLeftQ2.foldLeft(1)(_ * _)
+    if (element_neutre*24 == foldLeftR2) {
+      println(foldLeftQ2)
+      println("l'élément neutre = " + element_neutre)
+      println("LA_Queue.foldLeft(1)(_ * _)= " + foldLeftR2)
+      println("Test réussi")
+      println("================")
+    } else {
+      println("Test échoué !!!")
+      println("================")
+    }
+    println("================Test de la methode foldLeft sur Queue in Nil Out Non Nil =============== ")
+    val (foldLeftd ,foldLeftQ3) = Queue[Int](Nil, Nil).enqueue(1).enqueue(2).enqueue(3).enqueue(4).dequeue()
+    val foldLeftR3 = foldLeftQ3.foldLeft(1)(_ * _)
+    if (element_neutre * 24 == foldLeftR3) {
+      println(foldLeftQ3)
+      println("l'élément neutre = " + element_neutre)
+      println("LA_Queue.foldLeft(1)(_ * _)= " + foldLeftR3)
+      println("Test réussi")
+      println("================")
+    } else {
+      println("Test échoué !!!")
+      println("================")
+    }
 
-     val foldLeft1=qa.foldLeft(1)(_*_)
-     println(foldLeft1)
-      val foldLeft2=qd.foldLeft(1)(_*_)
-      println(foldLeft2)
+    println("================Test de la methode foldLeft sur Queue in Non Nil Out Non Nil =============== ")
+    val  foldLeftQ4 =foldLeftQ3.enqueue(5).enqueue(6)
+    val foldLeftR4 = foldLeftQ4.foldLeft(1)(_ * _)
+
+    if (element_neutre * 720 == foldLeftR4) {
+      println(foldLeftQ4)
+      println("l'élément neutre = " + element_neutre)
+      println("LA_Queue.foldLeft(1)(_ * _)= " + foldLeftR4)
+      println("Test réussi")
+      println("================")
+    } else {
+      println("Test échoué !!!")
+      println("================")
+    }
+
+
+    //val foldLeft2=qd.foldLeft(1)(_*_)
+      //println(foldLeft2)
 
     // newQueueIsEmpty()
    // nonEmptyQueueIsNotEmpty()
