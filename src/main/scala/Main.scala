@@ -4,9 +4,10 @@ object QueueTest {
   //import Queue._
   def main(args: Array[String]):Unit = {
     //example()
-    println("================")
+
     println("Exemple du sujet")
-    println()
+
+    println("===================================================================================")
 
     val qa: Queue[Int] = Queue[Int](Nil, Nil);
     println(qa)
@@ -33,42 +34,66 @@ object QueueTest {
     println((e, qk))
     val isEmpty: Boolean = qk.isEmpty;
     println(isEmpty)
-    println("================")
+    println("===================================================================================")
     println()
-    println("================")
 
-    println("verifier que une nouvelle Queue es bien vide ")
+
+
+
+    System.out.println("====================================Test de la methode isEmpty ============================= \n")
+    println("verifier que une nouvelle Queue In Nil Out Nil es bien isEmpty  ")
     val newQueueisEmpty = Queue[Int](Nil, Nil)
     if(newQueueisEmpty.isEmpty){
       println(newQueueisEmpty)
-      println( "La nouvelle Queue est bien vide !!! ===>  "+ newQueueisEmpty.isEmpty )
+      println( "LaQueue.isEmpty ===>  "+ newQueueisEmpty.isEmpty )
       println("Test réussi")
       println("================")
     }else {
       println("Test échoué !!!")
       println("================")
     }
-    println()
 
-    val nonEmptyQueueisNotEmpty= Queue[Int](Nil, Nil).enqueue(1)
-    println("================")
-    println("verifier que une Queue qui n'est pas vide  retourne bien nonEmpty  ")
-
+    val nonEmptyQueueisNotEmpty= Queue[Int](Nil, Nil).enqueue(1).enqueue(2).enqueue(3).enqueue(4)
+    println("verifier que une Queue qui n'est pas vide de In Non Nill Out Nil retourne bien nonEmpty  ")
     if(!nonEmptyQueueisNotEmpty.isEmpty) {
       println("La Queue:")
       println (nonEmptyQueueisNotEmpty)
-      println("nonEmpty===>"+ !nonEmptyQueueisNotEmpty.isEmpty)
+      println("!LaQueue.isEmpty===>"+ !nonEmptyQueueisNotEmpty.isEmpty)
 
       println("Test réussi")
       println("================")
     }else{
       println("Test échoué !!!")
       println("================")
-
+    }
+    println("verifier que une Queue qui n'est pas vide de In  Nill Out non Nil retourne bien nonEmpty")
+    val nonEmptyQueueisNotEmpty1 =qe ;
+    if (!nonEmptyQueueisNotEmpty1.isEmpty) {
+      println("La Queue:")
+      println(nonEmptyQueueisNotEmpty1)
+      println("!LaQueue.isEmpty===>" + !nonEmptyQueueisNotEmpty1.isEmpty)
+      println("Test réussi")
+      println("================")
+    } else {
+      println("Test échoué !!!")
+      println("================")
+    }
+    println("verifier que une Queue qui n'est pas vide de In  Non Nill Out Non Nil retourne bien nonEmpty")
+    val nonEmptyQueueisNotEmpty2 = qh;
+    if (!nonEmptyQueueisNotEmpty2.isEmpty) {
+      println("La Queue:")
+      println(nonEmptyQueueisNotEmpty2)
+      println("!LaQueue.isEmpty===>" + !nonEmptyQueueisNotEmpty2.isEmpty)
+      println("Test réussi")
+      println("==========================================================================================================================")
+    } else {
+      println("Test échoué !!!")
+      println("================")
     }
 
-    println("\n===========test de la methode length========")
-    println("Vérifier qu'une nouvelle Queue est de taille zéro   ")
+
+    println("\n===========test de la methode length========\n")
+    println("Vérifier qu'une nouvelle Queue de In Nil et de Out Nil est de taille zéro   ")
     val  newQueueDeTailleZero=Queue[Int](Nil, Nil)
     if(newQueueDeTailleZero.length == 0){
       println("La Queue:")
@@ -326,6 +351,7 @@ object QueueTest {
       println("================")
     } else {
       println("Test échoué !!!")
+      //sys.exit(0)
       println("================")
     }
 
@@ -470,18 +496,23 @@ object QueueTest {
       val queueAsList = List(4, 3, 2, 1)
       assert(areEquals(list, queueAsList))
     }
+
     def queueMapOutputsCorrectValue(): Unit ={
+
       val queue = Queue[Int](Nil, Nil).enqueue(1).enqueue(2).enqueue(3).enqueue(4)
       val mappedQueue = queue.map(_.toString())
       val correctOutput = Queue[String](Nil, Nil).enqueue("1").enqueue("2").enqueue("3").enqueue("4")
       assert(areQueueEquals(mappedQueue, correctOutput))
     }
+
     def foldedEmptyQueueEqualsBaseAccumulator(): Unit ={
       val accumulator = 13
       val queue = Queue[Int](Nil, Nil)
       val sum = queue.foldLeft(accumulator)(_ + _)
       assert(sum == accumulator)
     }
+
+
     def foldedQueueEqualsCorrectValue(): Unit ={
       val accumulator = "Values: "
       val queue = Queue[Int](Nil, Nil).enqueue(3).enqueue(7).enqueue(2)
