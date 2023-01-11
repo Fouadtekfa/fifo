@@ -208,7 +208,7 @@ object QueueTest {
       println("Test échoué !!!")
       println("================")
     }
-    System.out.println("======ToList sur un Queue non vide =========")
+    System.out.println("======ToList sur un Queue in non vide out vide =========")
 
     val queuetolist = Queue[Int](Nil, Nil).enqueue(1).enqueue(2).enqueue(3).enqueue(4)
     val queuetolist1= queuetolist.toList
@@ -222,11 +222,71 @@ object QueueTest {
       println("======================================\n")
     }
 
-    System.out.println("================Test de la methode rearOption =============== \n")
+    System.out.println("================Test de la methode Map sur Queue vide =============== \n")
+
+    val queuemap = Queue[Int](Nil, Nil)
+    val mappedQueue = queuemap.map(_*2)
+    val correctOutput = Queue[Int](Nil, Nil)
+    if (mappedQueue==correctOutput) {
+      //println("la  Queue vide in Nil out Nil  :\n"+ queuemap)
+      println(queuemap)
+      println("Queue.map(_*2)=>"+mappedQueue)
+      println("Test réussi")
+      println("================")
+    } else {
+      println("Test échoué !!!")
+      println("===================================")
+    }
+
+    System.out.println("================Test de la methode Map sur Queue In non Nil Out Nil=============== \n")
+    val queuemap1 = Queue[Int](Nil, Nil).enqueue(1).enqueue(2).enqueue(3)
+    val mappedQueue1 = queuemap1.map(_ * 2)
+    val correctOutput1 = Queue[Int](List(6,4,2), Nil)
+    if (mappedQueue1 == correctOutput1 ) {
+      println(queuemap1)
+      println("Résultat attendu =>"+correctOutput1)
+      println("Résultat obtenu : ")
+      println("Queue.map(_*2)=>"+mappedQueue1)
+      println("Test réussi")
+      println("================")
+    } else {
+      println("Test échoué !!!")
+      println("================")
+    }
+    System.out.println("================Test de la methode Map sur Queue In  Nil Out non Nil=============== \n")
 
 
-     //println(queuetolist)
-     //println(queuetolist1)
+    val queuemap2 = Queue[Int](Nil, Nil).enqueue(1).enqueue(2).enqueue(3)
+    val (map,queuemap3)  =queuemap2.dequeue()
+    val queuemap4 =queuemap3.map(_ *2)
+    val correctOutput2=Queue[Int](Nil, List(4,6))
+
+    if (queuemap4 == correctOutput2) {
+      println(queuemap3)
+      println("Résultat attendu =>" + correctOutput2)
+      println("Résultat obtenu : ")
+      println("Queue.map(_*2)=>" + queuemap4)
+      println("Test réussi")
+      println("================")
+    } else {
+      println("Test échoué !!!")
+      println("================")
+    }
+    System.out.println("================Test de la methode Map sur Queue In non Nil Out non Nil=============== \n")
+    val queuemap5= queuemap3.enqueue(4).enqueue(5).enqueue(6)
+    val queuemap6 = queuemap5.map(_ * 2)
+    val correctOutput3 = Queue[Int](List(12, 10, 8), List(4, 6))
+    if (queuemap6 == correctOutput3) {
+      println(queuemap5)
+      println("Résultat attendu =>" + correctOutput3)
+      println("Résultat obtenu : ")
+      println("Queue.map(_*2)=>" + queuemap6)
+      println("Test réussi")
+      println("================")
+    } else {
+      println("Test échoué !!!")
+      println("================")
+    }
 
     // newQueueIsEmpty()
    // nonEmptyQueueIsNotEmpty()
@@ -242,7 +302,7 @@ object QueueTest {
     //rearOfNonEmptyReturnsCorrectValue()
    // emptyQueueToListIsNil()
    // queueToListOutputsCorrectValue()
-    queueMapOutputsCorrectValue()
+   // queueMapOutputsCorrectValue()
     foldedEmptyQueueEqualsBaseAccumulator()
     foldedQueueEqualsCorrectValue()
 
