@@ -21,6 +21,12 @@ case class Queue[T](in: List[T], out: List[T]){
     }
 
   }
+
+  def dequeueTotal(): (Option[T], Queue[T]) = this match {
+    case Queue(Nil, Nil) => (None, this)
+    case Queue(i, Nil) => (Some(i.reverse.head), Queue(Nil, i.reverse.tail))
+    case Queue(i, o) => (Some(o.head), Queue(i, o.tail))
+  }
   /**
    *Accès au premier élément, s'il existe (dernier élément entré)
    *
