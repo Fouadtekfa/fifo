@@ -282,11 +282,17 @@ object QueueTest {
       println("Résultat obtenu : ")
       println("Queue.map(_*2)=>" + queuemap6)
       println("Test réussi")
-      println("================")
+      println("==================================================================================== \n")
     } else {
       println("Test échoué !!!")
-      println("================")
+      println("=======================")
     }
+    System.out.println("================Test de la methode foldLeft sur Queue vide  retu=============== \n")
+
+     val foldLeft1=qa.foldLeft(1)(_*_)
+     println(foldLeft1)
+      val foldLeft2=qd.foldLeft(1)(_*_)
+      println(foldLeft2)
 
     // newQueueIsEmpty()
    // nonEmptyQueueIsNotEmpty()
