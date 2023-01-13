@@ -9,19 +9,22 @@ object QueueTest {
 
     println("**************************************************************************************")
 
-    val qa: Queue[Int] = Queue[Int](Nil, Nil);
+    val qa  = Queue[Int](Nil, Nil);
     println(qa)
-    val qb: Queue[Int] = qa.enqueue(1);
+    val qb = qa.enqueue(1);
     println(qb)
-    val qc: Queue[Int] = qb.enqueue(2);
+    val qc = qb.enqueue(2);
     println(qc)
-    val qd: Queue[Int] = qc.enqueue(3);
+    val qd = qc.enqueue(3);
     println(qd)
     val (a, qe) = qd.dequeue();
+    println("qe====>"+qe  )
+    println("qe.dequeue()====>"+qe.dequeue() )
+
     println((a, qe))
-    val qf: Queue[Int] = qe.enqueue(4);
+    val qf = qe.enqueue(4);
     println(qf)
-    val qg: Queue[Int] = qf.enqueue(5);
+    val qg = qf.enqueue(5);
     println(qg)
     val (b, qh) = qg.dequeue();
     println((b, qh))
@@ -32,8 +35,9 @@ object QueueTest {
     println((d, qj))
     val (e, qk) = qj.dequeue();
     println((e, qk))
-    val isEmpty: Boolean = qk.isEmpty;
+    val isEmpty= qk.isEmpty;
     println(isEmpty)
+    println(qk.dequeue())
     println("************************************************************************************")
 
 

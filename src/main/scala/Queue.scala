@@ -12,7 +12,7 @@ case class Queue[T](in: List[T], out: List[T]){
    *
    * @return un tuple (élément retiré, nouvelle queue)
    */
-  def dequeue(): (T, Queue[T]) = out match{
+  def dequeue_partielle(): (T, Queue[T]) = out match{
     case x :: xs => (x, Queue(in, xs))
     case Nil => in.reverse match{
       case x :: xs => (x, Queue(Nil, xs))
@@ -21,12 +21,12 @@ case class Queue[T](in: List[T], out: List[T]){
     }
 
   }
-
-  def dequeueTotal(): (Option[T], Queue[T]) = this match {
-    case Queue(Nil, Nil) => (None, this)
-    case Queue(i, Nil) => (Some(i.reverse.head), Queue(Nil, i.reverse.tail))
-    case Queue(i, o) => (Some(o.head), Queue(i, o.tail))
+  def dequeue(): (Option[T], Queue[T]) = (in, out) match {
+    case (Nil, Nil) => (None, Queue(Nil, Nil))
+    case (_, Nil) => (Some(in.last), Queue(Nil, in.init.reverse)) //init revois la liste sans le dernier élément
+    case _ => (Some(out.head), Queue(in, out.tail))
   }
+
   /**
    *Accès au premier élément, s'il existe (dernier élément entré)
    *
