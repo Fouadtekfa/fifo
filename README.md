@@ -3,6 +3,8 @@
 - M1 IWOCS
 - 2022-2023
 
+**scala Version := "2.11.12"**
+
 Nous souhaiterions mettre en place une liste spécifique permettant un accès FIFO (first-in, first-out) c’est-à-dire une liste
 dans laquelle on peut retirer le dernier élément en temps raisonnable. Une telle liste est souvent appelée « queue ». Nous
 souhaiterions en outre conserver l’accès au premier élément en temps constant.

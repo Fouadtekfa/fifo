@@ -1,7 +1,7 @@
 import scala.util.Random
 
 object QueueTest {
-  //import Queue._
+  import Queue._
   def main(args: Array[String]):Unit = {
     //example()
 
