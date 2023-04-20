@@ -1,47 +1,44 @@
-import scala.util.Random
 
-object QueueTest {
-  import Queue._
+object Main {
+
   def main(args: Array[String]):Unit = {
-    //example()
 
-    println("Exemple du sujet")
+    println("L'exemple")
 
     println("**************************************************************************************")
 
     val qa  = Queue[Int](Nil, Nil);
-    println(qa)
+    println("A = Queue[Int](Nil, Nil) : "+ qa)
     val qb = qa.enqueue(1);
-    println(qb)
+    println("B = A.enqueue(1) : "+ qb)
     val qc = qb.enqueue(2);
-    println(qc)
+    println("C = B.enqueue(2) : "+qc)
     val qd = qc.enqueue(3);
-    println(qd)
+    println("D = C.enqueue(3) : "+qd)
     val (a, qe) = qd.dequeue();
-    println("qe====>"+qe  )
-    println("qe.dequeue()====>"+qe.dequeue() )
-
-    println((a, qe))
+    println("(a, E) = D.dequeue() : "+(a, qe))
     val qf = qe.enqueue(4);
-    println(qf)
+    println("F = E.enqueue(4): "+qf)
     val qg = qf.enqueue(5);
-    println(qg)
+    println( "G = F.enqueue(5)  :"+qg)
     val (b, qh) = qg.dequeue();
-    println((b, qh))
+    println("(b, H) = G.dequeue() : "+(b, qh))
     val (c, qi) = qh.dequeue();
-    println((c, qi))
+    println("(c, I) = H.dequeue() : "+(c, qi))
 
     val (d, qj) = qi.dequeue();
-    println((d, qj))
+    println("(d, J) = I.dequeue() :"+(d, qj))
     val (e, qk) = qj.dequeue();
-    println((e, qk))
+    println("(e, K) = J.dequeue() : "+(e, qk))
     val isEmpty= qk.isEmpty;
-    println(isEmpty)
-    println(qk.dequeue())
+    println("K.isEmpty :"+isEmpty)
+    //println(qk.dequeue())
     println("************************************************************************************")
 
-
-
+    /*
+    Pour les tests, je vérifie que le résultat obtenu correspond au résultat attendu, et si c'est le cas,
+    alors le test est considéré comme réussi, sinon il est considéré comme échoué.
+     */
     //Test de la methode isEmpty
     System.out.println("\n********************************************Test de la methode isEmpty ******************************************** \n")
     println("verifier que une nouvelle Queue In Nil Out Nil es bien isEmpty")
@@ -95,6 +92,8 @@ object QueueTest {
     }
 
 
+    //Test de la methode length
+
     println("\n********************************************Test de la methode length ********************************************\n")
     println("Vérifier qu'une  Queue de In Nil et de Out Nil est de taille zéro   ")
 
@@ -147,54 +146,99 @@ object QueueTest {
       println("Test échoué !!!")
       println("================")
     }
+    //la methode dequeue
 
     println("\n********************************************test de la methode dequeue ********************************************\n")
-    println("Retire le dernier élément d'une Queue contenante un seul élément =1\net la vérifier avec la méthode IsEmpty qui doit retourner true et voir si l'élément retiré est le bon ")
-      val  (elr,dequeuedDeTaille1IsEmpty) =Queue[Int] (Nil, Nil).enqueue(1).dequeue()
-
-    if (newQueueisEmpty.isEmpty && elr==1) {
-
-      println(elr,dequeuedDeTaille1IsEmpty)
-      println("et vide??:" + dequeuedDeTaille1IsEmpty.isEmpty)
+    println("dequeue sur Queue de In  Nil et de out Nil")
+    val (elr0, dequeue0) = qk.dequeue()
+    val dequeue_attendu0 = None
+    if (elr0 == dequeue_attendu0) {
+      println(qk)
+      println("Queue.dequeue ==>" + (elr0, dequeue0))
       println("Test réussi")
-      println("********************************************")
+      println("*********************************************")
     } else {
       println("Test échoué !!!")
       println("================")
     }
-    println("Retire le dernier élément d'une Queue contenante deux éléments et  voir si l'élément retiré est le bon ");
-    val value = new Random().nextInt(50)
-    val (dequeuedValue, queue) = Queue[Int](Nil, Nil).enqueue(value).enqueue(1).dequeue()
-    println(dequeuedValue, queue)
-    if(value == dequeuedValue) {
-      println("l'élément retiré est le bon ? :   ==>" + (value == dequeuedValue))
-      println("Test réussi")
-      println("********************************************")
-    }else {
-      println("Test échoué !!!")
-      println("================")
-    }
-    println("Faire dequeued deux fois et voir si on retourne la bonne valeur sûr une Queue de trois éléments")
-     val value2 = new Random().nextInt(50)
-    val (dequeuedValue2, queue1) = Queue[Int](Nil, Nil).enqueue(1).enqueue(value2).enqueue(1).dequeue()._2.dequeue()
 
-    if (value2 == dequeuedValue2) {
-      println((dequeuedValue2, queue1))
-      println("l'élément retiré est le bon ? :   ==>" + (value2 == dequeuedValue2))
-      println("Test réussi")
 
-      println("********************************************")
+    println("dequeue sur Queue de In Non Nil et de Out Nil")
+    val (elr3,dequeue3)= qc.dequeue()
+    val dequeue_attendu3=1
+    //.get nous retourne l'element
+    if (elr3.get == dequeue_attendu3) {
+      println(qc)
+      println("Queue.dequeue ==>" + (elr3,dequeue3) )
+      println("Test réussi")
+      println("***************************************")
     } else {
       println("Test échoué !!!")
       println("================")
     }
+    println("dequeue sur Queue de In Nil et de out Non Nil")
+    val (elr1, dequeue1) = qe.dequeue()
+    val dequeue_attendu1 = 2
+    if (elr1.get == dequeue_attendu1) {
+      println(qe)
+
+      println("Queue.dequeue ==>" + (elr1, dequeue1))
+
+      println("Test réussi")
+      println("***************************************")
+    } else {
+      println("Test échoué !!!")
+      println("================")
+    }
+
+
+    println("dequeue sur Queue de In Non Nil et de Out Non Nil ")
+    val (elr2, dequeue2) = qg.dequeue()
+    val dequeue_attendu2 = 2
+    if (elr2.get == dequeue_attendu2) {
+      println(qg)
+
+      println("Queue.dequeue ==>" + (elr2, dequeue2))
+
+      println("Test réussi")
+      println("*****************************************")
+    } else {
+      println("Test échoué !!!")
+      println("**************************************")
+    }
+
+
+
+    //Test de la methode headOption
 
     System.out.println("\n********************************************Test de la methode headOption******************************************** \n")
     System.out.println ("Vérifier que headOption  d'une Queue Nil return NON : ")
-    val headofEmptyReturnsNone = Queue[Int](Nil, Nil)
-    if (headofEmptyReturnsNone.headOption().isEmpty ) {
-      println( "Queue : \n"+ headofEmptyReturnsNone)
-      println(" headOption  d'une Queue Nil  return ==>" +headofEmptyReturnsNone.headOption())
+    val headOption0 = qa
+    /*
+    isDefined cest pour vérifier si l'objet Option[T] retourné par headOption()
+     contient un élément ou non.
+     elle nos retourne true si l'option contient un élément
+      (c'est-à-dire Some(x)) et false si elle est vide (c'est-à-dire None).
+     */
+    if ( headOption0.headOption()==None && !headOption0.headOption().isDefined) {
+      println( "Queue : \n"+ headOption0)
+      println(" headOption.Queue==>" +headOption0.headOption())
+      println("headOption.Queue contient un élément ??: ==>" +headOption0.headOption().isDefined )
+      println("Test réussi")
+      println("********************************************")
+    } else {
+      println("Test échoué !!!")
+      println("================")
+    }
+    System.out.println("headOption  d'une Queue de In Non Nill et de out Nill return la bonne valeur  : ")
+    val headOption1 = qc.headOption();
+    val headOption_attendu2=Some(2)
+
+    if (headOption1.isDefined & headOption_attendu2 ==headOption1 ) {
+      println(qc)
+      println("dernier élément entré: " + 2)
+      println("headhop.isDefined ==> " + headOption1.isDefined)
+      System.out.println("résultat obtenu====> " + headOption1)
       println("Test réussi")
       println("********************************************")
     } else {
@@ -202,90 +246,158 @@ object QueueTest {
       println("================")
     }
 
-    System.out.println("Vérifier que headOption  d'une Queue non vide return la bonne valeur  : ")
+    System.out.println("headOption  d'une Queue de In  Nill et de out Non Nill return la bonne valeur  : ")
+    val headOption2 = qe.headOption();
+    val headOption_attendu3 = Some(3)
 
-    val valuehop = new Random().nextInt(50)
-
-    val headhop = Queue[Int](Nil, Nil).enqueue(1).enqueue(valuehop).headOption()
-    if (headhop.isDefined & headhop.get ==valuehop) {
-      println("dernier élément entré: "+valuehop)
-      println("headhop.isDefined ==> " + headhop.isDefined)
-      System.out.println("la valeure retourner====> "+ headhop.get )
+    if (headOption2.isDefined & headOption_attendu3 == headOption2) {
+      println(qe)
+      println("dernier élément entré: " +  3)
+      println("headhop.isDefined ==> " + headOption2.isDefined)
+      System.out.println("résultat obtenu====> " + headOption2)
       println("Test réussi")
       println("********************************************")
     } else {
       println("Test échoué !!!")
       println("================")
     }
+
+    System.out.println("headOption  d'une Queue de In  Non Nill et de  out Non Nill return la bonne valeur  : ")
+    val headOption3 = qg.headOption();
+    val headOption_attendu4 = Some(5)
+
+    if (headOption3.isDefined & headOption_attendu4 == headOption3) {
+      println(qg)
+      println("dernier élément entré: " + 5)
+      println("headhop.isDefined ==> " + headOption3.isDefined)
+      System.out.println("résultat obtenu====> " + headOption3)
+      println("Test réussi")
+      println("********************************************")
+    } else {
+      println("Test échoué !!!")
+      println("================")
+    }
+
 
 
     System.out.println("\n********************************************Test de la methode rearOption =============== \n")
 
-    System.out.println("rearOption d'une Queue Nil Return None \n")
-    val rearofEmptyReturnsNone = Queue[Int](Nil, Nil)
-    if (rearofEmptyReturnsNone.rearOption().isEmpty) {
-
-      println("LaQueue.rearOption().isEmpty =>"+rearofEmptyReturnsNone.rearOption().isEmpty)
-      println("rearOption d'une Queue Nil "+rearofEmptyReturnsNone+" Return: ==> " +rearofEmptyReturnsNone.rearOption())
+    System.out.println("rearOption d'une Queue De In Nil et de Out Nil Return None \n")
+    val rearOption0 = qa
+    //rearOption().isEmpty=> true si l'option est vide (c'est-à-dire None)
+    if (rearOption0.rearOption().isEmpty) {
+      println(qa)
+      println("LaQueue.rearOption().isEmpty =>"+rearOption0.rearOption().isEmpty)
+      println("rearOption().isEmpty=> true si l'option est vide (c'est-à-dire None)")
+      println("rearOption d'une Queue Nil "+rearOption0+" Return: ==> " +rearOption0.rearOption())
       println("Test réussi")
       println("********************************************")
     } else {
       println("Test échoué !!!")
       println("================")
     }
-    System.out.println("Vérifier que rearOption  d'une Queue non vide return la bonne valeur  : ")
-    val valuerear = new Random().nextInt(50)
-    val rear = Queue[Int](Nil, Nil).enqueue(valuerear).enqueue(1).rearOption()
 
-    if (rear.isDefined & rear.get == valuerear) {
-      println("premier élément entré "+valuerear)
-      System.out.println( "LaQueue.rearOption()==> "+rear)
-      println("la valeure retourner ==>" +rear.get)
+    System.out.println("rearOption  d'une Queue de In Non Nill et de Out Nil  return la bonne valeur  : ")
+    val rearOption1 = qc.rearOption()
+    val rearOption_attendu1=Some(1)
+    if (rearOption1.isDefined & rearOption1 == rearOption_attendu1) {
+      println(qc)
+      println("résultat attendu "+Some(1))
+      System.out.println( "LaQueue.rearOption()==> "+rearOption1)
       println("Test réussi")
       println("********************************************")
     } else {
       println("Test échoué !!!")
       println("========================================================")
     }
+
+
+    System.out.println("rearOption  d'une Queue de In Nill et de Out Non Nil  return la bonne valeur  : ")
+    val rearOption2 = qe.rearOption()
+    val rearOption_attendu2 = Some(2)
+    if (rearOption2.isDefined & rearOption2 == rearOption_attendu2) {
+      println(qe)
+      println("résultat attendu " + Some(2))
+      System.out.println("LaQueue.rearOption()==> " + rearOption2)
+      println("Test réussi")
+      println("********************************************")
+    } else {
+      println("Test échoué !!!")
+      println("========================================================")
+    }
+    System.out.println("rearOption  d'une Queue de In Non Nill et de Out Non Nil  return la bonne valeur  : ")
+    val rearOption3 = qg.rearOption()
+    val rearOption_attendu3 = Some(2)
+    if (rearOption3.isDefined & rearOption3 == rearOption_attendu3) {
+      println(qg)
+      println("résultat attendu " + Some(2))
+      System.out.println("LaQueue.rearOption()==> " + rearOption3)
+      println("Test réussi")
+      println("********************************************")
+    } else {
+      println("Test échoué !!!")
+      println("========================================================")
+    }
+
     System.out.println("\n********************************************Test de la methode ToList ******************************************** \n")
 
     System.out.println("ToList sur un Queue de In Nil et Out Nil  ")
-    val queueniltolist = Queue[Int](Nil, Nil)
-    val tolistNil = queueniltolist.toList
-    if (tolistNil == List()) {
-      println(queueniltolist)
-      println("Résultats obtenus ===> "+tolistNil )
-     // println(tolistNil)
+    val tolist0 = qa.toList
+    if (tolist0 == List()) {
+      println(qa)
+      println("Résultats obtenus de Queue.ToList ===> "+tolist0)
       println("Test réussi")
       println("********************************************")
     } else {
       println("Test échoué !!!")
       println("================")
     }
-    System.out.println("ToList sur un Queue in non vide out vide ")
 
-    val queuetolist = Queue[Int](Nil, Nil).enqueue(1).enqueue(2).enqueue(3).enqueue(4)
-    val queuetolist1= queuetolist.toList
-    if ( queuetolist1 == List(1,2,3,4)) {
-      println(queuetolist)
-      println("Résultats obtenus ===> "+queuetolist1 )
+    System.out.println("ToList sur un Queue in non vide out vide ")
+    val qtolist1 = Queue[Int](Nil, Nil).enqueue(1).enqueue(2).enqueue(3).enqueue(4)
+    val resultat_ToList1= qtolist1.toList
+    if ( resultat_ToList1 == List(1,2,3,4)) {
+      println(qtolist1)
+      println("Résultats obtenus ===> "+resultat_ToList1 )
       println("Test réussi")
       println("********************************************\n")
     } else {
       println("Test échoué !!!")
       println("****************************************************************************************\n")
     }
+    System.out.println("ToList sur un Queue in Nill  out Non Nil ")
+    val qtolist2 = qe.toList
+    if (qtolist2 == List( 2, 3)) {
+      println(qe)
+      println("Résultats obtenus ===> " + qtolist2)
+      println("Test réussi")
+      println("********************************************\n")
+    } else {
+      println("Test échoué !!!")
+      println("****************************************************************************************\n")
+    }
+    System.out.println("ToList sur un Queue in Non  Nil out Non  Nil")
+    val qtolist3 = qg.toList
+    if (qtolist3 == List(2, 3,4,5)) {
+      println(qg)
+      println("Résultats obtenus ===> " + qtolist3)
+      println("Test réussi")
+      println("*************************************************************\n")
+    } else {
+      println("Test échoué !!!")
+      println("***************************************************************\n")
+    }
+
     System.out.println("\n********************************************Test de la methode Map******************************************** \n")
 
     System.out.println("Map sur Queue de In Nil et de Out Nil")
 
-    val queuemap = Queue[Int](Nil, Nil)
-    val mappedQueue = queuemap.map(_*2)
-    val correctOutput = Queue[Int](Nil, Nil)
-    if (mappedQueue==correctOutput) {
-      //println("la  Queue vide in Nil out Nil  :\n"+ queuemap)
+    val queuemap = qa
+    val Map0 = queuemap.map(_*2)
+    val Map_attendu0 = Queue[Int](Nil, Nil)
+    if (Map0==Map_attendu0) {
       println(queuemap)
-      println("Queue.map(_*2)=>"+mappedQueue)
+      println("Queue.map(_*2)=>"+Map0)
       println("Test réussi")
       println("********************************************")
     } else {
@@ -342,11 +454,11 @@ object QueueTest {
       println("Test échoué !!!")
       println("=======================")
     }
-      println("\n********************************************Test de la methode foldLeft******************************************** \n")
-      println("Test de la methode foldLeft sur Queue vide   \n")
-      val element_neutre=1
-      val foldLeftQ1=Queue[Int](Nil, Nil)
-      val foldLeftR1=foldLeftQ1.foldLeft(1)(_ * _)
+    println("\n********************************************Test de la methode foldLeft******************************************** \n")
+    println("Test de la methode foldLeft sur Queue vide   \n")
+    val element_neutre=1
+    val foldLeftQ1=Queue[Int](Nil, Nil)
+    val foldLeftR1=foldLeftQ1.foldLeft(1)(_ * _)
     if (element_neutre == foldLeftR1) {
       println(foldLeftQ1)
       println("l'élément neutre = "+element_neutre)
@@ -400,206 +512,13 @@ object QueueTest {
       println("================")
     }
 
+    val accumulator = "Values: "
+    val queue = Queue[Int](Nil, Nil).enqueue(3).enqueue(7).enqueue(2)
+    println("exemeple de foldLeft"+queue+" toString  est  un accumulator = "+accumulator)
+    val value = queue.foldLeft(accumulator)(_ ++ _.toString() ++ ", ")
+    println(value)
 
-    //val foldLeft2=qd.foldLeft(1)(_*_)
-      //println(foldLeft2)
-
-    // newQueueIsEmpty()
-   // nonEmptyQueueIsNotEmpty()
-    //newQueueHasLengthZero()
-    //singletonHasLengthOne()
-   // dequeuedSingletonIsEmpty()
-    //dequeuedSingletonReturnsCorrectValue()
-   // dequeueReturnsCorrectValue1()
-    //dequeueReturnsCorrectValue2()
-    //headOfEmptyReturnsNone()
-   // headOfNonEmptyReturnsCorrectValue()
-    //rearOfEmptyReturnsNone()
-    //rearOfNonEmptyReturnsCorrectValue()
-   // emptyQueueToListIsNil()
-   // queueToListOutputsCorrectValue()
-   // queueMapOutputsCorrectValue()
-    foldedEmptyQueueEqualsBaseAccumulator()
-    foldedQueueEqualsCorrectValue()
-
-    println("Tous les tests ont réussi")
-
-
-   /* def example(): Unit ={
-      println("================")
-      println("Exemple du sujet")
-      println()
-      val qa: Queue[Int] = Queue[Int](Nil, Nil); println(qa)
-      val qb: Queue[Int] = qa.enqueue(1); println(qb)
-      val qc: Queue[Int] = qb.enqueue(2); println(qc)
-      val qd: Queue[Int] = qc.enqueue(3); println(qd)
-      val (a, qe) = qd.dequeue(); println((a, qe))
-      val qf: Queue[Int] = qe.enqueue(4); println(qf)
-      val qg: Queue[Int] = qf.enqueue(5); println(qg)
-      val (b, qh) = qg.dequeue(); println((b, qh))
-      val (c, qi) = qh.dequeue(); println((c, qi))
-      val (d, qj) = qi.dequeue(); println((d, qj))
-      val (e, qk) = qj.dequeue(); println((e, qk))
-      val isEmpty: Boolean = qk.isEmpty; println(isEmpty)
-      println("================")
-      println()
-    }
-*/
-    /**
-     *
-     * TESTS UNITAIRES
-     *
-     */
-
-    def newQueueIsEmpty(): Unit ={
-      val newQueue = Queue[Int](Nil, Nil)
-      assert(newQueue.isEmpty)
-    }
-
-    def nonEmptyQueueIsNotEmpty(): Unit ={
-      val queue = Queue[Int](Nil, Nil).enqueue(1)
-      assert(!queue.isEmpty)
-    }
-
-    def newQueueHasLengthZero(): Unit ={
-      val newQueue = Queue[Int](Nil, Nil)
-      assert(newQueue.length == 0)
-    }
-
-    def singletonHasLengthOne(): Unit ={
-      val queue = Queue[Int](Nil, Nil).enqueue(1)
-      assert(queue.length == 1)
-    }
-
-    def dequeuedSingletonIsEmpty(): Unit ={
-      val (elem, queue) = Queue[Int](Nil, Nil).enqueue(1).dequeue()
-      assert(queue.isEmpty)
-    }
-
-    def dequeuedSingletonReturnsCorrectValue(): Unit ={
-      val value = new Random().nextInt(Int.MaxValue)
-      val (dequeuedValue, queue) = Queue[Int](Nil, Nil).enqueue(value).dequeue()
-      assert(value == dequeuedValue)
-    }
-
-    def dequeueReturnsCorrectValue1(): Unit ={
-      val value = new Random().nextInt(Int.MaxValue)
-      val (dequeuedValue, queue) = Queue[Int](Nil, Nil).enqueue(value).enqueue(1).dequeue()
-      assert(value == dequeuedValue)
-    }
-
-    def dequeueReturnsCorrectValue2(): Unit ={
-      val value = new Random().nextInt(Int.MaxValue)
-      val (dequeuedValue, queue) = Queue[Int](Nil, Nil).enqueue(1).enqueue(value).enqueue(1).dequeue()._2.dequeue()
-      assert(value == dequeuedValue)
-    }
-
-    def headOfEmptyReturnsNone(): Unit ={
-      val queue = Queue[Int](Nil, Nil)
-      assert(queue.headOption().isEmpty)
-    }
-
-    def headOfNonEmptyReturnsCorrectValue(): Unit ={
-      val value = new Random().nextInt(Int.MaxValue)
-      val head = Queue[Int](Nil, Nil).enqueue(1).enqueue(value).headOption()
-      assert(head.isDefined)
-      assert(head.get == value)
-    }
-    def rearOfEmptyReturnsNone(): Unit ={
-      val queue = Queue[Int](Nil, Nil)
-      assert(queue.rearOption().isEmpty)
-    }
-    def rearOfNonEmptyReturnsCorrectValue(): Unit ={
-      val value = new Random().nextInt(Int.MaxValue)
-      val rear = Queue[Int](Nil, Nil).enqueue(value).enqueue(1).rearOption()
-      assert(rear.isDefined)
-      assert(rear.get == value)
-    }
-    def emptyQueueToListIsNil(): Unit ={
-      val queue = Queue[Int](Nil, Nil)
-      val list = queue.toList
-      assert(areEquals(list, Nil))
-    }
-    def queueToListOutputsCorrectValue(): Unit ={
-      val queue = Queue[Int](Nil, Nil).enqueue(1).enqueue(2).enqueue(3).enqueue(4)
-      val list = queue.toList
-      val queueAsList = List(4, 3, 2, 1)
-      assert(areEquals(list, queueAsList))
-    }
-
-    def queueMapOutputsCorrectValue(): Unit ={
-
-      val queue = Queue[Int](Nil, Nil).enqueue(1).enqueue(2).enqueue(3).enqueue(4)
-      val mappedQueue = queue.map(_.toString())
-      val correctOutput = Queue[String](Nil, Nil).enqueue("1").enqueue("2").enqueue("3").enqueue("4")
-      assert(areQueueEquals(mappedQueue, correctOutput))
-    }
-
-    def foldedEmptyQueueEqualsBaseAccumulator(): Unit ={
-      val accumulator = 13
-      val queue = Queue[Int](Nil, Nil)
-      val sum = queue.foldLeft(accumulator)(_ + _)
-      assert(sum == accumulator)
-    }
-
-
-    def foldedQueueEqualsCorrectValue(): Unit ={
-      val accumulator = "Values: "
-      val queue = Queue[Int](Nil, Nil).enqueue(3).enqueue(7).enqueue(2)
-      val value = queue.foldLeft(accumulator)(_ ++ _.toString() ++ ", ")
-      val correctValue = "Values: 2, 7, 3, "
-      assert(value.equals(correctValue))
-    }
-
-
-    /**
-     *
-     * HELPERS
-     *
-     */
-
-
-    /**
-     * vérifier que deux listes sont égaux
-     * @param a List A
-     * @param b List B
-     * @tparam T contenue de la liste
-     * @return  vrai ou faux
-     */
-
-    def  areEquals[T](a: List[T], b: List[T]): Boolean = {
-      (a, b) match{
-        case (x :: xs, y :: ys) =>
-          if (x.equals(y)) {
-            areEquals(xs, ys)
-          }
-          else{
-            false
-          }
-        case (Nil, Nil) => true
-        case _ => false
-      }
-    }
-
-
-    /**
-     *  vérifier que deux Queue sont égaux
-     * @param a Queue
-     * @param b Queue
-     * @tparam T contenue
-     * @return vrai ou faux
-     */
-    def  areQueueEquals[T] (a: Queue[T], b: Queue[T]): Boolean = {
-      areEquals(a.in, b.in) && areEquals(a.out, b.out)
-    }
-
-    /*
-    def foo(as: List[Int]) = as.length
-    def foo(as: List[String])(implicit ev: DummyImplicit) = 42
-    def foo(as: List[Boolean])(implicit ev1: DummyImplicit, ev2: DummyImplicit) = -1
-    */
 
   }
 }
-
 
