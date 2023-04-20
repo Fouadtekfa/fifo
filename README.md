@@ -18,3 +18,39 @@ vide.
 
 L’opération d’inversion ne se produit en retirant les éléments à la fin que si la liste de sortie est vide. C’est pourquoi on dit
 que la structure fonctionne en temps constant « amorti »
+
+# Résulta obtenue : 
+ ## Exemple :
+
+![Exemple](captures_d'ecran_des_différents_tests/Exemple.png)
+
+ ## Méthode isEmpty :
+
+![isEmpty](captures_d'ecran_des_différents_tests/isEmpty.png)
+
+ ## Méthode length : 
+
+![length](captures_d'ecran_des_différents_tests/length.png)
+
+ ## Méthode dequeue :
+
+![Méthode dequeue](captures_d'ecran_des_différents_tests/dequeue.png)
+
+ ## Méthode ToList:
+
+![ToList](captures_d'ecran_des_différents_tests/ToList.png)
+
+ ## Méthode foldLeft:
+
+![ foldLeft](captures_d'ecran_des_différents_tests/foldLeft.png)
+
+ ## Méthode Map :
+
+![Map](captures_d'ecran_des_différents_tests/Map.png)
+
+ ## Méthode headOption :
+![headOption](captures_d'ecran_des_différents_tests/headOption.png)
+
+ ## Méthode rearOption
+
+![rearOption](captures_d'ecran_des_différents_tests/rearOption.png)
