@@ -36,11 +36,11 @@ que la structure fonctionne en temps constant « amorti »
 
 ![Méthode dequeue](captures_d'ecran_des_différents_tests/dequeue.png)
 
- ## Méthode ToList:
+ ## Méthode ToList :
 
 ![ToList](captures_d'ecran_des_différents_tests/ToList.png)
 
- ## Méthode foldLeft:
+ ## Méthode foldLeft :
 
 ![ foldLeft](captures_d'ecran_des_différents_tests/foldLeft.png)
 
@@ -49,8 +49,9 @@ que la structure fonctionne en temps constant « amorti »
 ![Map](captures_d'ecran_des_différents_tests/Map.png)
 
  ## Méthode headOption :
+
 ![headOption](captures_d'ecran_des_différents_tests/headOption.png)
 
- ## Méthode rearOption
+ ## Méthode rearOption :
 
 ![rearOption](captures_d'ecran_des_différents_tests/rearOption.png)
